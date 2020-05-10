@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class WalletTransactions {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator="trans_seq")
-	@SequenceGenerator(sequenceName="trans_seq",initialValue=1000,allocationSize=1,name="trans_seq")
+	@SequenceGenerator(sequenceName="trans_seq",initialValue=05000,allocationSize=1,name="trans_seq")
 	@Column(name="trans_id")
 	private int transactionId;
 	
@@ -40,7 +40,7 @@ public class WalletTransactions {
 	@Column(name="description")
 	private String description;
 	
-	@NotNull
+	
 	@Column(name="transactiondate")
 	@JsonFormat(pattern="yyyy-mm-dd HH:mm:ss", timezone="India")
 	private LocalDateTime dateofTransaction;

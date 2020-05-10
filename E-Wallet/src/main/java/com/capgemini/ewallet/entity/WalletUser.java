@@ -12,6 +12,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 
+
 @Entity
 @Table(name="walletuser")
 @DynamicUpdate(true)
@@ -53,6 +54,9 @@ public class WalletUser {
 	@Column(name="login_name" ,length=25)
 	private String loginName;
 
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "acc_Id",referencedColumnName="acc_id")
+	private WalletAccount walletaccount;
 	
 	
 	public WalletUser() {
@@ -109,6 +113,13 @@ public class WalletUser {
 
 	public void setLoginName(String loginName) {
 		this.loginName = loginName;
+	}
+	public WalletAccount getWalleAccount() {
+		return walletaccount;
+	}
+
+	public void setWallet(WalletAccount walletaccount) {
+		this.walletaccount = walletaccount;
 	}
 
 
