@@ -22,20 +22,21 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @DynamicInsert(true)
 public class WalletTransactions {
 	@Id
+	@NotNull(message="id is mandatory")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator="trans_seq")
 	@SequenceGenerator(sequenceName="trans_seq",initialValue=05000,allocationSize=1,name="trans_seq")
 	@Column(name="trans_id")
 	private int transactionId;
 	
-	@NotNull
+	@NotNull(message="should not be null")
 	@Column(name="sender_id")
 	private int senderId;
 	
-	@NotNull
+	@NotNull(message="Should not be null")
 	@Column(name="receiver_id")
 	private int receiverId;
 	
-	@NotNull(message="description is Mandatory")
+	@NotEmpty(message="description is Mandatory")
 	@Size(min=10,max=40,message="Length must of 10 to 40 characters ")
 	@Column(name="description")
 	private String description;
@@ -45,9 +46,9 @@ public class WalletTransactions {
 	@JsonFormat(pattern="yyyy-mm-dd HH:mm:ss", timezone="India")
 	private LocalDateTime dateofTransaction;
 	
-	@NotNull(message="amount is mandatory")
-	@Min(value=1,message="Amount must be greater than or equal to 1")
-	@Max(value=100000,message="Amount to be transferred must not be greater than 100000")
+	@NotNull(message="Amount is mandatory")
+	@Min(value=1000, message="Can transfer minimum Rs. 1000")
+	@Max(value=50000, message="Can transfer maximum Rs. 50000")
 	@Column(name="amt")
 	private Double amount;
 	

@@ -9,6 +9,6 @@ import com.capgemini.ewallet.entity.WalletTransactions;
 
 @Repository
 public interface TransactionDao extends JpaRepository<WalletTransactions, Integer> {
-	List<WalletTransactions> findBySenderId(int senderId);
+	
 
 }

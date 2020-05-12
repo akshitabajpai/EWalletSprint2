@@ -2,13 +2,15 @@ package com.capgemini.ewallet.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.capgemini.ewallet.entity.WalletAccount;
 import com.capgemini.ewallet.entity.WalletTransactions;
-
+@Service
 public interface TransactionService {
 //	public WalletAccount findAccount(int accountId);
-	public String TransferAmount(int sender,int reciever,double amt);
+	String TransferMoney(int senderId, int recieverId, double amt);
 //	public void updateBalance(int accountId, double amount);
-	public List<WalletTransactions> viewWalletTransactions();
+	List<WalletTransactions> viewAllTransactions();
 
 }

@@ -30,26 +30,26 @@ public  class TransactionServiceImpl implements TransactionService{
 	
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-	public String TransferAmount(int sender,int reciever,double amt) throws TransactionException {
+	public String TransferMoney(int senderId,int recieverId,double amt) throws TransactionException {
 		// TODO Auto-generated method stub
     	WalletAccount SenderAccount, RecieverAccount;
-		Optional<WalletAccount> SenderAccountOp=accountdao.findById(sender);
+		Optional<WalletAccount> SenderAccountOp=accountdao.findById(senderId);
 		if(SenderAccountOp.isPresent()) {
 			SenderAccount=SenderAccountOp.get();
 		}
 		else {
-			throw new TransactionException("From Account ID is not present");
+			throw new TransactionException("Sender ID is not present");
 		}
 		
-		Optional<WalletAccount> RecieverAccountOp=accountdao.findById(reciever);
+		Optional<WalletAccount> RecieverAccountOp=accountdao.findById(recieverId);
 		if(RecieverAccountOp.isPresent()) {
 			RecieverAccount=RecieverAccountOp.get();
 		}
 		else {
-			throw new TransactionException("To Account ID is not present");
+			throw new TransactionException("Reciever ID is not present");
 		}
 		
-		if(SenderAccount.getAccountBalance()<amt) throw new TransactionException("Insufficient Balance");
+		if(SenderAccount.getAccountBalance() < amt) throw new TransactionException("Insufficient Balance");
 		SenderAccount.setAccountBalance(SenderAccount.getAccountBalance()-amt);
 		RecieverAccount.setAccountBalance(RecieverAccount.getAccountBalance()+amt);
 		accountdao.updateBalance(SenderAccount.getAccountBalance(), SenderAccount.getAccountId());
@@ -99,7 +99,7 @@ public  class TransactionServiceImpl implements TransactionService{
     
 	@Override
 	@Transactional(readOnly = true)
-	public List<WalletTransactions> viewWalletTransactions(){
+	public List<WalletTransactions> viewAllTransactions(){
 		return transferdao.findAll();
 //	public List<WalletTransactions> transactionHistory(int senderId) {
 //		// TODO Auto-generated method stub
@@ -107,6 +107,9 @@ public  class TransactionServiceImpl implements TransactionService{
 //		System.out.println(history.get(0));
 //		return history;
 	}
+
+
+
 	
 
 }
