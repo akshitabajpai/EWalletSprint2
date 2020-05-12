@@ -28,6 +28,7 @@ public class WalletAccount {
 	
 	@NotNull(message="Balance is Mandatory")
 	@Min(value=1000, message= "Your Opening amount must be Rs. 1000")
+	@Column(name="account_balance")
 	private double accountBalance;
 	
 	@OneToOne(cascade=CascadeType.ALL)
@@ -43,6 +44,7 @@ public class WalletAccount {
 		super();
 		this.accountId = accountId;
 		this.accountBalance = accountBalance;
+		this.walletUser=walletUser;
 	}
 
 	public int getAccountId() {

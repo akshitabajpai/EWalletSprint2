@@ -46,6 +46,7 @@ public class WalletTransactions {
 	private LocalDateTime dateofTransaction;
 	
 	@NotNull(message="amount is mandatory")
+	@Min(value=1,message="Amount must be greater than or equal to 1")
 	@Max(value=100000,message="Amount to be transferred must not be greater than 100000")
 	@Column(name="amt")
 	private Double amount;
