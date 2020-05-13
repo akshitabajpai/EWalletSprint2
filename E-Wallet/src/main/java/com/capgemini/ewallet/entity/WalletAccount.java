@@ -24,12 +24,12 @@ public class WalletAccount {
 	@Column(name="acc_id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator="acc_seq")
 	@SequenceGenerator(sequenceName="acc_seq",initialValue=2020200000,allocationSize=1,name="acc_seq")
-	private int accountId;
+	private Integer accountId;
 	
 	@NotNull(message="Balance is Mandatory")
 	@Min(value=1000, message= "Your Opening amount must be Rs. 1000")
 	@Column(name="account_balance")
-	private double accountBalance;
+	private Double accountBalance;
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="user_id",referencedColumnName="user_id")
