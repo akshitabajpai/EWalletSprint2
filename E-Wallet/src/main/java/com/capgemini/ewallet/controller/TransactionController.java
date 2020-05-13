@@ -50,8 +50,15 @@ public class TransactionController {
 				err+=error.getDefaultMessage()+"<br/>";
 			throw new TransactionException(err);
 		}
-		transactionService.TransferMoney(transaction.getSenderId(), transaction.getRecieverId(), transaction.getAmount());
+		try {
+			transactionService.TransferMoney(transaction.getSenderId(),transaction.getRecieverId(),transaction.getAmount());
 		return new ResponseEntity<String>("Ammount Transferred", HttpStatus.OK);
+	}
+		catch(DataIntegrityViolationException ex)
+		{
+			throw new TransactionException("Amount not transferred");
+		}
+
 		
 }
 }
