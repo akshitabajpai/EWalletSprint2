@@ -10,8 +10,8 @@ import com.capgemini.ewallet.entity.WalletAccount;
 
 public interface AccountDao extends JpaRepository<WalletAccount,Integer>{
 	@Modifying(clearAutomatically = true)
-	@Query("UPDATE WalletAccount a SET a.accountbalance= :account_balance WHERE a.acc_Id= :accountId")
-	int updateBalance(@Param("balance") double balance, @Param("accountId") int accountId);
+	@Query("UPDATE WalletAccount a SET a.accountBalance= :account_balance WHERE a.accountId= :accountId")
+	int updateBalance(@Param("account_balance") double balance, @Param("accountId") int accountId);
 	
 
 }

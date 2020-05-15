@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.capgemini.ewallet.entity.Transaction;
 import com.capgemini.ewallet.entity.WalletTransactions;
 import com.capgemini.ewallet.exception.TransactionException;
 import com.capgemini.ewallet.service.TransactionServiceImpl;
@@ -29,7 +28,7 @@ import com.capgemini.ewallet.service.TransactionServiceImpl;
 public class TransactionController {
 	
 	@Autowired 
-	private TransactionServiceImpl transactionService; 
+	TransactionServiceImpl transactionService; 
 	
 	@CrossOrigin 
 	@GetMapping(value="/history")
@@ -41,7 +40,7 @@ public class TransactionController {
 	
 	@CrossOrigin
 	@PostMapping(value = "/transfer")
-	public ResponseEntity<String> TransferMoney(@Valid @RequestBody Transaction transaction, BindingResult br) throws TransactionException
+	public ResponseEntity<String> TransferMoney(@Valid @RequestBody WalletTransactions transaction, BindingResult br) throws TransactionException
 	{
 		String err="";
 		if(br.hasErrors()) {
@@ -51,7 +50,7 @@ public class TransactionController {
 			throw new TransactionException(err);
 		}
 		try {
-			transactionService.TransferMoney(transaction.getSenderId(),transaction.getRecieverId(),transaction.getAmount());
+			transactionService.TransferMoney(transaction.getSenderId(),transaction.getReceiverId(),transaction.getAmount());
 		return new ResponseEntity<String>("Ammount Transferred", HttpStatus.OK);
 	}
 		catch(DataIntegrityViolationException ex)

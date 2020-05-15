@@ -12,9 +12,8 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 
-
 @Entity
-@Table(name="walletuser")
+@Table(name = "walletuser")
 @DynamicUpdate(true)
 @DynamicInsert(true)
 public class WalletUser {
@@ -28,19 +27,13 @@ public class WalletUser {
 	
 	@NotNull(message="UserName is Mandatory")
 	@Size(min=3,max=25,message="Length must be from 3 to 25 character ")
-	@Pattern(regexp="([A-Za-z]+)|([A-Za-z]+[ ]+[A-Za-z]+)", message="Only alphabets and space is allowed")
+	@Pattern(regexp="([A-Za-z]+)|([A-Za-z]+[ ][A-Za-z]+)", message="allow only alphabets and a blank scpace is allowed" )
 	@Column(name="user_name",length=25)
 	private String userName;
 	
-	@NotNull(message="Password is Mandatory")
-	@Size(min=8,max=15,message="Length must be from 3 to 25 character ")
-	@Pattern(regexp = "(?=.*[0-9])", message = "Password must contain one digit.")
-	@Pattern(regexp = "(?=.*[a-z])", message = "Password must contain one lowercase letter.")
-	@Pattern(regexp = "(?=.*[A-Z])", message = "Password must contain one uppercase letter.")
-	@Pattern(regexp = "(?=\\S+$)", message = "Password must contain no whitespace.")
-	@Pattern(regexp="(?=.*[@#$%^&+=])",message="Password must contain one special character")
-	@Pattern(regexp=".{8,} ",message="Password must have atleast 8 character")
-	@Column(name="password")
+	@NotEmpty(message = "user password is mandatory")
+	@Column(name="user_password")
+	@Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,14}$")
 	private String password;
 	
 	@NotNull(message="Phone number is Mandatory")
@@ -50,13 +43,11 @@ public class WalletUser {
 	
 	@NotNull(message="Login Name is Mandatory")
 	@Size(min=3,max=25,message="Length can be betwwen 3 and 25 chars")
-	@Pattern(regexp="([A-Za-z]+)|([A-Za-z]+[][A-Za-z]+)",message="Only Alphabet and blank space is allowed")
+	@Pattern(regexp="([A-Za-z]+)|([A-Za-z]+[ ][A-Za-z]+)", message="allow only alphabets and a blank scpace is allowed" )
 	@Column(name="login_name" ,length=25)
 	private String loginName;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "acc_Id",referencedColumnName="acc_id")
-	private WalletAccount walletaccount;
+	
 	
 	
 	public WalletUser() {
@@ -114,13 +105,13 @@ public class WalletUser {
 	public void setLoginName(String loginName) {
 		this.loginName = loginName;
 	}
-	public WalletAccount getWalleAccount() {
-		return walletaccount;
+
+
+
+
+	@Override
+	public String toString() {
+		return "WalletUser [userId=" + userId + ", userName=" + userName + ", password=" + password + ", phoneNumber="
+				+ phoneNumber + ", loginName=" + loginName + ", ]";
 	}
-
-	public void setWallet(WalletAccount walletaccount) {
-		this.walletaccount = walletaccount;
-	}
-
-
 }

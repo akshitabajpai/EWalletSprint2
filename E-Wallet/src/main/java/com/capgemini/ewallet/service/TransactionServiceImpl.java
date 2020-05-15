@@ -78,12 +78,11 @@ public  class TransactionServiceImpl implements TransactionService{
 //		if (present.isPresent())
 //			wallet = present.get();
 //		else
-//			throw new EwalletException("Account not found"); 
+//			throw new TransactionException("Account not found"); 
 //
 //		wallet.setAccountBalance(amount);
+//    }
 //
-//	}
-//	
 //	@Override
 //	@Transactional(readOnly = true)
 //	public WalletAccount findAccount(int accountId) {

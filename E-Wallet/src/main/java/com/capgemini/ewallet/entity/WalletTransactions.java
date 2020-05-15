@@ -1,8 +1,7 @@
 package com.capgemini.ewallet.entity;
 import javax.persistence.*;
 import java.time.LocalDateTime;
-
-
+import java.util.Date;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Max;
@@ -15,6 +14,9 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.deser.std.DateDeserializers.DateDeserializer;
+
 
 @Entity
 @Table(name="transaction")
@@ -41,10 +43,13 @@ public class WalletTransactions {
 	@Column(name="description")
 	private String description;
 	
+	@JsonDeserialize(using = DateDeserializer .class)
+	 private Date dateofTransaction;
 	
-	@Column(name="transactiondate")
-	@JsonFormat(pattern="yyyy-mm-dd HH:mm:ss", timezone="India")
-	private LocalDateTime dateofTransaction;
+//	
+//	@Column(name="transactiondate")
+//	@JsonFormat(pattern="yyyy-mm-dd HH:mm:ss", timezone="India")
+//	private LocalDateTime dateofTransaction;
 	
 	@NotNull(message="Amount is mandatory")
 	@Min(value=1000, message="Can transfer minimum Rs. 1000")
@@ -83,12 +88,21 @@ public class WalletTransactions {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public LocalDateTime getDateofTransaction() {
+	
+	
+//	public LocalDateTime getDateofTransaction() {
+//		return dateofTransaction;
+//	}
+//	public void setDateofTransaction(LocalDateTime dateofTransaction) {
+//		this.dateofTransaction = dateofTransaction;
+	public Date getDateofTransaction() {
 		return dateofTransaction;
 	}
-	public void setDateofTransaction(LocalDateTime dateofTransaction) {
+	public void setDateofTransaction(Date dateofTransaction) {
 		this.dateofTransaction = dateofTransaction;
 	}
+
+
 	public Double getAmount() {
 		return amount;
 	}
@@ -108,7 +122,7 @@ public class WalletTransactions {
 		// TODO Auto-generated constructor stub
 	}
 	public WalletTransactions(int transactionId, int senderId, int receiverId, String description,
-			LocalDateTime dateofTransaction,Double amount,Double accountBalance) {
+			Date dateofTransaction,Double amount,Double accountBalance) {
 		super();
 		this.transactionId = transactionId;
 		this.senderId = senderId;
