@@ -38,6 +38,7 @@ public class WalletUser {
 	
 	@NotNull(message="Phone number is Mandatory")
 	@Size(max=10,message="Number must be of 10 digits")
+	@Column(name="phone_number")
 	@Pattern(regexp="(^$|[0-9]{10})")
 	private String phoneNumber;
 	
@@ -113,5 +114,12 @@ public class WalletUser {
 	public String toString() {
 		return "WalletUser [userId=" + userId + ", userName=" + userName + ", password=" + password + ", phoneNumber="
 				+ phoneNumber + ", loginName=" + loginName + ", ]";
+	}
+
+
+
+	public WalletAccount getWalleAccount() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

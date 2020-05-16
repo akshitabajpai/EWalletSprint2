@@ -43,13 +43,11 @@ public class WalletTransactions {
 	@Column(name="description")
 	private String description;
 	
+	@NotNull(message="date is mandatory")
+	@Column(name="dateoftransaction")
 	@JsonDeserialize(using = DateDeserializer .class)
 	 private Date dateofTransaction;
 	
-//	
-//	@Column(name="transactiondate")
-//	@JsonFormat(pattern="yyyy-mm-dd HH:mm:ss", timezone="India")
-//	private LocalDateTime dateofTransaction;
 	
 	@NotNull(message="Amount is mandatory")
 	@Min(value=1000, message="Can transfer minimum Rs. 1000")
@@ -57,7 +55,7 @@ public class WalletTransactions {
 	@Column(name="amt")
 	private Double amount;
 	
-	@NotEmpty
+	@NotNull
 	@Min(value=1000)
 	@Column(name="acctBal")
 	private Double accountBalance;
@@ -89,12 +87,6 @@ public class WalletTransactions {
 		this.description = description;
 	}
 	
-	
-//	public LocalDateTime getDateofTransaction() {
-//		return dateofTransaction;
-//	}
-//	public void setDateofTransaction(LocalDateTime dateofTransaction) {
-//		this.dateofTransaction = dateofTransaction;
 	public Date getDateofTransaction() {
 		return dateofTransaction;
 	}

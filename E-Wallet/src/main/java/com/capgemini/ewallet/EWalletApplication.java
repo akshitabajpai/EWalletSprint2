@@ -11,7 +11,7 @@ import com.capgemini.ewallet.entity.WalletAccount;
 import com.capgemini.ewallet.entity.WalletUser;
 
 @SpringBootApplication
-public class EWalletApplication implements CommandLineRunner{
+public class EWalletApplication {
 	@Autowired
 	private UserDao userdao;
 	private AccountDao accountdao;
@@ -20,11 +20,42 @@ public class EWalletApplication implements CommandLineRunner{
 		SpringApplication.run(EWalletApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
+	
 		
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //	@Override
 //	public void run(String... args) throws Exception {
@@ -40,4 +71,4 @@ public class EWalletApplication implements CommandLineRunner{
 ////		accountdao.save(a2);
 //	}
 	
-}
+
