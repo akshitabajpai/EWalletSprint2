@@ -54,7 +54,8 @@ public  class TransactionServiceImpl implements TransactionService{
 		RecieverAccount.setAccountBalance(RecieverAccount.getAccountBalance()+amt);
 		accountdao.updateBalance(SenderAccount.getAccountBalance(), SenderAccount.getAccountId());
 		accountdao.updateBalance(RecieverAccount.getAccountBalance(), RecieverAccount.getAccountId());
-		
+		return "Transaction Successfully Completed";
+    }  
 		
 		
 
@@ -67,8 +68,7 @@ public  class TransactionServiceImpl implements TransactionService{
 //		updateBalance(sender.getAccountId(),sender_new_balance);
 //		updateBalance(receiver.getAccountId(),receiver_new_balance);
 //		
-     	return "Transaction Successfully Completed";
-}  
+     	
 //    @Override
 //	@Transactional(propagation = Propagation.REQUIRED)
 //	public void updateBalance(int accountId, double amount) {
@@ -100,15 +100,24 @@ public  class TransactionServiceImpl implements TransactionService{
 	@Transactional(readOnly = true)
 	public List<WalletTransactions> viewAllTransactions(){
 		return transferdao.findAll();
-//	public List<WalletTransactions> transactionHistory(int senderId) {
+
+	}
+	@Override
+	public WalletTransactions  saveTransaction(WalletTransactions walletTransaction) {
+		return transferdao.save(walletTransaction);
+	}
+}
+		
+		
+		
+		//	public List<WalletTransactions> transactionHistory(int senderId) {
 //		// TODO Auto-generated method stub
 //		List<WalletTransactions> history= transferdao.findBySenderId(senderId);
 //		System.out.println(history.get(0));
 //		return history;
-	}
+	
 
 
 
 	
 
-}
