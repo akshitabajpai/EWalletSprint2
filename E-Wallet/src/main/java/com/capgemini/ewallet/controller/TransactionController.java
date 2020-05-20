@@ -22,6 +22,7 @@ import com.capgemini.ewallet.entity.WalletTransactions;
 import com.capgemini.ewallet.exception.TransactionException;
 import com.capgemini.ewallet.service.TransactionServiceImpl;
 
+@CrossOrigin("http://localhost:4200")
 @RestController
 @RequestMapping
 

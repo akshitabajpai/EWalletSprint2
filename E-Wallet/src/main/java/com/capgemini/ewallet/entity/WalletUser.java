@@ -118,7 +118,7 @@ public class WalletUser {
 
 
 
-	public WalletAccount getWalleAccount() {
+	public WalletAccount getWalletAccount() {
 		// TODO Auto-generated method stub
 		return null;
 	}
