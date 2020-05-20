@@ -1,4 +1,4 @@
-package com.capgemini.ewallet.exception;
+package com.capgemini.ewallet.dto;
 
 public class ErrorInfo {
 	private String messgae;

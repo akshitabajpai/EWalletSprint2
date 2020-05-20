@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.capgemini.ewallet.exception.ErrorInfo;
+import com.capgemini.ewallet.dto.ErrorInfo;
 import com.capgemini.ewallet.exception.TransactionException;
 
 @RestControllerAdvice

@@ -1,15 +1,24 @@
 package com.capgemini.ewallet.entity;
+
 import javax.persistence.*;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotNull;
+
+import javax.persistence.Column;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+
 
 
 @Entity
@@ -33,12 +42,11 @@ public class WalletUser {
 	
 	@NotEmpty(message = "user password is mandatory")
 	@Column(name="user_password")
-	@Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,14}$")
+	@Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,14}$",message="Password must have Number and one uppercase letter and special characters")
 	private String password;
 	
 	@NotNull(message="Phone number is Mandatory")
 	@Size(max=10,message="Number must be of 10 digits")
-	@Column(name="phone_number")
 	@Pattern(regexp="(^$|[0-9]{10})")
 	private String phoneNumber;
 	
@@ -48,7 +56,6 @@ public class WalletUser {
 	@Column(name="login_name" ,length=25)
 	private String loginName;
 
-	
 	
 	
 	public WalletUser() {
@@ -115,11 +122,13 @@ public class WalletUser {
 		return "WalletUser [userId=" + userId + ", userName=" + userName + ", password=" + password + ", phoneNumber="
 				+ phoneNumber + ", loginName=" + loginName + ", ]";
 	}
+	
 
 
 
-	public WalletAccount getWalletAccount() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+	
+	
+	
+
 }
