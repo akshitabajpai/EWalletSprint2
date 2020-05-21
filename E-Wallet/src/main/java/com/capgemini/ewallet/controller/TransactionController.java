@@ -39,7 +39,7 @@ public class TransactionController {
 	}
 	
 	
-	@CrossOrigin
+	@CrossOrigin(origins="http://localhost:4200")
 	@PostMapping(value = "/transfer")
 	public ResponseEntity<String> TransferMoney(@Valid @RequestBody WalletTransactions transaction, BindingResult br) throws TransactionException
 	{

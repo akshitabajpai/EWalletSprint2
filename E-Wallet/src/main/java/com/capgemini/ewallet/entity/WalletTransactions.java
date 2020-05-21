@@ -26,7 +26,7 @@ public class WalletTransactions {
 	@Id
 	@NotNull(message="id is mandatory")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator="trans_seq")
-	@SequenceGenerator(sequenceName="trans_seq",initialValue=05000,allocationSize=1,name="trans_seq")
+	@SequenceGenerator(sequenceName="trans_seq",initialValue=500001,allocationSize=1,name="trans_seq")
 	@Column(name="trans_id")
 	private int transactionId;
 	
